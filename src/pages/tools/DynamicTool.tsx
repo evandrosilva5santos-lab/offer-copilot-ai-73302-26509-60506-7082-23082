@@ -75,7 +75,7 @@ export default function DynamicTool() {
         // Import context pipeline dynamically
         const { buildContext } = await import('@/lib/contextPipeline');
         const { runAI } = await import('@/lib/aiAdapters');
-        const { storage, KEYS } = await import('@/lib/storage');
+        const { getApiKey } = await import('@/lib/apiKeyManager');
         
         // Build query from inputs
         const query = Object.values(inputs).join(' ');
@@ -83,14 +83,13 @@ export default function DynamicTool() {
         // Build rich context through pipeline
         const context = await buildContext(query);
         
-        // Get API keys
-        const apiKeys = storage.get<Record<string, string>>(KEYS.API_KEYS) || {};
-        const groqKey = apiKeys['groq'];
+        // Get API key
+        const groqKey = getApiKey('groq');
         
         if (!groqKey) {
           toast({
             title: "API Key não configurada",
-            description: "Configure sua chave Groq em Configurações > API",
+            description: "Configure em Configurações > Chaves de API ou ative 'Usar API da Empresa'",
             variant: "destructive",
           });
           setIsLoading(false);

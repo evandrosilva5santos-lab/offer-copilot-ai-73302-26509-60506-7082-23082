@@ -4,6 +4,7 @@
 
 import { runAI } from './aiAdapters';
 import { storage, KEYS } from './storage';
+import { getApiKey, hasApiKey } from './apiKeyManager';
 
 export interface ContextResult {
   provider: string;
@@ -55,8 +56,7 @@ export async function buildContext(query: string): Promise<string> {
   // 1️⃣ DeepSeek - Broad search with AI reasoning
   if (config.enableDeepSeek) {
     try {
-      const apiKeys = storage.get<Record<string, string>>(KEYS.API_KEYS) || {};
-      const deepseekKey = apiKeys['deepseek'];
+      const deepseekKey = getApiKey('deepseek');
       
       if (deepseekKey) {
         const response = await runAI('deepseek', deepseekKey, 'deepseek-chat', [
