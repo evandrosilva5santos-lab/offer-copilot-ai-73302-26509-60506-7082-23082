@@ -11,13 +11,15 @@ import { useToast } from "@/hooks/use-toast";
 import { AdminLayout } from "./AdminLayout";
 import { useEnvironment } from "@/lib/envManager";
 import { loadPipelineConfig, savePipelineConfig, type PipelineConfig } from "@/lib/contextPipeline";
-import { Search, Sparkles } from "lucide-react";
+import { Search, Sparkles, Palette } from "lucide-react";
+import { useTheme, type Theme } from "@/hooks/useTheme";
 
 export default function AdminSettingsPage() {
   const [settings, setSettings] = useState<AdminSettings>(getAdminSettings());
   const [pipelineConfig, setPipelineConfig] = useState<PipelineConfig>(loadPipelineConfig());
   const { toast } = useToast();
   const env = useEnvironment();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setPipelineConfig(loadPipelineConfig());
@@ -126,6 +128,73 @@ export default function AdminSettingsPage() {
             <Button onClick={handleSave} className="w-full">
               Salvar Configurações
             </Button>
+          </CardContent>
+        </Card>
+
+        {/* Visual Theme Configuration */}
+        <Card>
+          <CardHeader>
+            <div className="flex items-center gap-2">
+              <Palette className="h-5 w-5 text-primary" />
+              <div>
+                <CardTitle>Tema Visual</CardTitle>
+                <CardDescription>
+                  Escolha o estilo visual do aplicativo
+                </CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="visual-theme">Tema Ativo</Label>
+              <Select
+                value={theme}
+                onValueChange={(value) => setTheme(value as Theme)}
+              >
+                <SelectTrigger id="visual-theme">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="default">Padrão (Clássico)</SelectItem>
+                  <SelectItem value="seo-dark">SEO Dark (Cyber Luxury)</SelectItem>
+                </SelectContent>
+              </Select>
+              <p className="text-xs text-muted-foreground">
+                O tema SEO Dark oferece visual premium com gradientes azuis e ciano
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 rounded-lg border border-border bg-card">
+                <p className="text-sm font-medium mb-2">Tema Padrão</p>
+                <div className="flex gap-2">
+                  <div className="w-8 h-8 rounded bg-primary"></div>
+                  <div className="w-8 h-8 rounded bg-secondary"></div>
+                  <div className="w-8 h-8 rounded bg-accent"></div>
+                </div>
+              </div>
+              <div className="p-4 rounded-lg border border-primary/20 bg-gradient-to-br from-seo-blue/10 to-seo-cyan/10">
+                <p className="text-sm font-medium mb-2">SEO Dark</p>
+                <div className="flex gap-2">
+                  <div className="w-8 h-8 rounded" style={{ background: 'hsl(199, 89%, 48%)' }}></div>
+                  <div className="w-8 h-8 rounded" style={{ background: 'hsl(188, 94%, 43%)' }}></div>
+                  <div className="w-8 h-8 rounded" style={{ background: 'hsl(192, 100%, 50%)' }}></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-4 bg-muted rounded-lg space-y-2">
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-primary" />
+                <p className="text-sm font-medium">Compatibilidade Universal</p>
+              </div>
+              <ul className="text-xs text-muted-foreground space-y-1 pl-6 list-disc">
+                <li>Totalmente responsivo para mobile, tablet e desktop</li>
+                <li>Compatível com Lovable, Dyad e V0.dev</li>
+                <li>Usa apenas Tailwind CSS + variáveis nativas</li>
+                <li>Animações suaves e efeitos hover premium</li>
+              </ul>
+            </div>
           </CardContent>
         </Card>
 

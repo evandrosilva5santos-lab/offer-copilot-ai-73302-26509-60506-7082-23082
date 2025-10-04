@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
+import "./styles/seo-theme.css";
 import { logEnvironmentInfo } from "./lib/envManager";
 
 // Log environment info on startup

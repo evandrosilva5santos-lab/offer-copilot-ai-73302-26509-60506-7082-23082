@@ -1,0 +1,180 @@
+/* SEO Dark Gradient Universal Theme */
+/* Cyber Luxury Design - Premium Dark Theme */
+
+[data-theme="seo-dark"] {
+  /* Core Colors */
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  
+  --card: 217.2 32.6% 17.5%;
+  --card-foreground: 210 40% 98%;
+  
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  
+  --primary: 199 89% 48%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  
+  --accent: 188 94% 43%;
+  --accent-foreground: 210 40% 98%;
+  
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 199 89% 48%;
+  
+  /* SEO Specific Colors */
+  --seo-dark: 220 40% 7%;
+  --seo-darkBlue: 220 50% 11%;
+  --seo-blue: 199 89% 48%;
+  --seo-cyan: 188 94% 43%;
+  --seo-bright: 192 100% 50%;
+  --seo-light: 199 89% 95%;
+  
+  /* Radius */
+  --radius: 0.75rem;
+}
+
+/* Background Gradients */
+[data-theme="seo-dark"] .bg-seo-gradient {
+  background: linear-gradient(135deg, hsl(220, 50%, 15%) 0%, hsl(220, 60%, 8%) 100%);
+}
+
+[data-theme="seo-dark"] .bg-hero-gradient {
+  background: radial-gradient(ellipse at top, hsl(199, 89%, 48%) -150%, hsl(220, 60%, 8%) 70%);
+}
+
+[data-theme="seo-dark"] .text-gradient {
+  background: linear-gradient(90deg, hsl(188, 94%, 43%), hsl(199, 89%, 48%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="seo-dark"] .button-gradient {
+  background: linear-gradient(to right, hsl(199, 89%, 48%), hsl(188, 94%, 43%));
+}
+
+/* Card Styles */
+[data-theme="seo-dark"] .bg-seo-card {
+  background: rgba(18, 26, 43, 0.8);
+  border: 1px solid rgba(2, 132, 199, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="seo-dark"] .bg-seo-card-active {
+  background: rgba(2, 132, 199, 0.2);
+  border: 1px solid rgba(2, 132, 199, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lightSweep {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { 
+    box-shadow: 0 0 20px 2px rgba(2, 132, 199, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 30px 4px rgba(2, 132, 199, 0.5);
+  }
+}
+
+[data-theme="seo-dark"] .animate-fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+[data-theme="seo-dark"] .text-sweep {
+  background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+  background-size: 200% 100%;
+  animation: lightSweep 2s linear infinite;
+}
+
+/* Hover Effects */
+[data-theme="seo-dark"] .hover-scale {
+  transition: transform 0.3s ease;
+}
+
+[data-theme="seo-dark"] .hover-scale:hover {
+  transform: scale(1.03);
+}
+
+[data-theme="seo-dark"] .hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+[data-theme="seo-dark"] .hover-glow:hover {
+  box-shadow: 0 0 20px 2px rgba(2, 132, 199, 0.5);
+}
+
+[data-theme="seo-dark"] .pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Typography */
+[data-theme="seo-dark"] body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: hsl(220, 50%, 11%);
+  color: hsl(210, 40%, 98%);
+}
+
+/* Background Pattern */
+[data-theme="seo-dark"]::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(2, 132, 199, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Scrollbar Styling */
+[data-theme="seo-dark"] ::-webkit-scrollbar {
+  width: 10px;
+}
+
+[data-theme="seo-dark"] ::-webkit-scrollbar-track {
+  background: hsl(220, 50%, 11%);
+}
+
+[data-theme="seo-dark"] ::-webkit-scrollbar-thumb {
+  background: hsl(199, 89%, 48%);
+  border-radius: 5px;
+}
+
+[data-theme="seo-dark"] ::-webkit-scrollbar-thumb:hover {
+  background: hsl(188, 94%, 43%);
+}
+
+/* Selection */
+[data-theme="seo-dark"] ::selection {
+  background-color: rgba(2, 132, 199, 0.3);
+  color: hsl(210, 40%, 98%);
+}
